@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Center, ScrollView, VStack, Skeleton, Text, Heading } from 'native-base';
+import { Center, ScrollView, VStack, Skeleton, Text, Heading, useToast } from 'native-base';
 import * as ImagePicker from 'expo-image-picker';
 
 import { ScreenHeader } from '@components/ScreenHeader';
@@ -20,20 +20,25 @@ export function Profile() {
     try {
       const photoSelected = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 1,
-        aspect: [4, 4],
-        allowsEditing: true,
+        quality: 1, //definição da qualidade da imagem
+        aspect: [4, 4], // Formato da imagem: 4x4
+        allowsEditing: true, //Edição da Foto
       });
 
-      if(photoSelected.assets[0].uri) {
-        setUserPhoto(photoSelected.assets[0].uri);
+      if(photoSelected.canceled) {
+        return
       }
+
+     if(photoSelected.uri) {
+      setUserPhoto(photoSelected.uri)
+     }
 
     } catch (error) {
       console.log(error)
     } finally {
       setPhotoIsLoading(false)
   }
+}
 
   return (
     <VStack flex={1}>
