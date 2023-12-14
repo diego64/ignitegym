@@ -19,7 +19,6 @@ export function Exercise() {
   }
 
   return (
-    
     <VStack flex={1}>
       <VStack px={8} bg="gray.600" pt={12}>
         <TouchableOpacity onPress={handleGoBack}>
@@ -32,7 +31,7 @@ export function Exercise() {
         </TouchableOpacity>
 
         <HStack justifyContent="space-between" mt={4} mb={8} alignItems="center">
-          <Heading color="gray.100" fontSize="lg"  flexShrink={1}>
+          <Heading color="gray.100" fontSize="lg" flexShrink={1} fontFamily="heading">
             Puxada frontal
           </Heading>
 
